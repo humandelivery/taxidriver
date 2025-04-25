@@ -24,8 +24,8 @@ public class ClientService {
     private StompSession stompSession;
 
 
-
     public void connectWithToken(String jwtToken) {
+        //기본 세팅
         List<Transport> transports = new ArrayList<>();
         transports.add(new WebSocketTransport(new StandardWebSocketClient()));
         transports.add(new RestTemplateXhrTransport());
@@ -42,11 +42,15 @@ public class ClientService {
 
 
         stompClient.connectAsync(url, httpHeaders, stompHeaders, new StompSessionHandlerAdapter() {
+            //
             @Override
             public void afterConnected(StompSession session, StompHeaders connectedHeaders) {
                 stompSession = session;
+                 //
                 System.out.println(" WebSocket 성공 id : " + session.getSessionId());
+                //요청 위치 정보
 
+                //call 받아옴
             }
 
             @Override
